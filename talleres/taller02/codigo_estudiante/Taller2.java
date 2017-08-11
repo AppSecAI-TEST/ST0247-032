@@ -9,14 +9,14 @@ import java.util.*;
 
 /**
  *
- * @author ctezna2
+ * @author ctezna2-Nicolas Gonzalez
  */
 public class Taller2 {
-    public static void main(String[] args){
-        int[] v = {2,0,4,1,3};
-        esValido(v);
-        queens(8);
-    }
+//    public static void main(String[] args){
+//        int[] v = {2,0,4,1,3};
+//        esValido(v);
+//        queens(8);
+//    }
     public static boolean sumaGrupo(int start, int[] nums, int target) {
         if (start >= nums.length){
             return target == 0;
@@ -74,50 +74,13 @@ public class Taller2 {
         }
         System.out.println();
     }
-    public static boolean esValidod(int[] tablero) {
-        String str = "";
-        String st = "";
-        StringBuilder a = new StringBuilder();
-        StringBuilder sb = new StringBuilder();
-        int n = tablero.length;
-        for (int i = 0; i < n; i++) {
-            a.append(tablero[i]);
-            sb.append(i);
-        }
-        str = a.toString();
-        st = sb.toString();
-        String s = "";
-        int count = 0;
-        ArrayList<String> list = permutations(str);
-        for (int i = 0; i < list.size(); i++) {
-            s = list.get(i);
-            for (int j = 0; j < s.length() - 1; j++) {
-                for (int k = 1; k < s.length(); k++) {
-                    int x = (int) s.charAt(j);
-                    int y = (int) s.charAt(k);
-                    int z = (int) st.charAt(j);
-                    int w = (int) st.charAt(k);
-                    if (Math.abs(x - y) == Math.abs(z - w)) {
-                        count++;
-                    }
-                }
-            }        
-            if (count == 0) {
-                int solution = Integer.parseInt(s);
-                System.out.println(solution);
-                return true;
-            }
-        }
-        return false;
-    }
     public static boolean esValido(int[] tablero){
         int n = tablero.length;
         for(int i = 0; i < n-1; i++){
             for(int j = 1; j < n; j++){
-                if(Math.abs(tablero[i] - tablero[j]) == Math.abs(i - j)) System.out.print("false");return false;
+                if(Math.abs(tablero[i] - tablero[j]) == Math.abs(i - j)) return false;
             }
         }
-        System.out.print("true");
         return true;
     }
 
@@ -140,7 +103,7 @@ public class Taller2 {
                  queensCount++;
              }
          }
-         System.out.println(queensCount);
+         //System.out.println(queensCount);
          return queensCount;
      }
 }
