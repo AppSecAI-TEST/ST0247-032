@@ -12,10 +12,11 @@ import java.util.*;
  * @author ctezna2
  */
 public class Taller2 {
-//    public static void main(String[] args){
-//        int[] n = {0,1,2,3,4};
-//        esValido(n);
-//    }
+    public static void main(String[] args){
+        int[] v = {2,0,4,1,3};
+        esValido(v);
+        queens(8);
+    }
     public static boolean sumaGrupo(int start, int[] nums, int target) {
         if (start >= nums.length){
             return target == 0;
@@ -73,43 +74,7 @@ public class Taller2 {
         }
         System.out.println();
     }
-//    public static boolean esValido(int[] tablero) {
-//        int n = tablero.length;
-//        String str = "";
-//        String st = "";
-//        StringBuilder a = new StringBuilder();
-//        StringBuilder sb = new StringBuilder();
-//        for (int i = 0; i < n; i++) {
-//            a.append(tablero[i]);
-//            sb.append(i);
-//        }
-//        str = a.toString();
-//        st = sb.toString();
-//        String s = "";
-//        ArrayList<String> list = permutations(str);
-//        int count = 0;
-//        for (int j = 0; j < list.size(); j++) {
-//            s = list.get(j);
-//            char[] c = s.toCharArray();
-//            for (int i = 0; i < n; i++) {
-//                if (((int) c[i] - (int) c[n-1]) == (n - i)) {
-//                    //return false;
-//                    count++;
-//                }
-//                if (((int) c[n-1] - (int) c[i]) == (n - i)) {
-//                    //return false;
-//                    count++;
-//                }
-//            }
-//        }
-//         if (count == 0) {
-//                int solution = Integer.parseInt(s);
-//                System.out.println(solution);
-//                return true;
-//            }
-//            return false;
-//        }
-    public static boolean esValido(int[] tablero) {
+    public static boolean esValidod(int[] tablero) {
         String str = "";
         String st = "";
         StringBuilder a = new StringBuilder();
@@ -145,14 +110,37 @@ public class Taller2 {
         }
         return false;
     }
+    public static boolean esValido(int[] tablero){
+        int n = tablero.length;
+        for(int i = 0; i < n-1; i++){
+            for(int j = 1; j < n; j++){
+                if(Math.abs(tablero[i] - tablero[j]) == Math.abs(i - j)) System.out.print("false");return false;
+            }
+        }
+        System.out.print("true");
+        return true;
+    }
 
-     public static void queens(int n) {
-         int [] board = new int[n];
-         int queens = 0;
+     public static int queens(int n) {
+         String s = "";
+         int queensCount = 0;
          for(int i = 0; i < n; i++){
-             board[i] = i;
+             String x = Integer.toString(i);
+             s += x;
          }
-         
-         System.out.println(queens); 
+         ArrayList<String> list = permutations(s);
+         String str = "";
+         for (int i = 0; i < list.size(); i++) {
+            str = list.get(i);
+            int [] board = new int[n];
+            for(int j = 0; j < n; j++){
+                board[j] = Integer.parseInt(str.valueOf(str.charAt(j)));
+             }
+             if (esValido(board)) {
+                 queensCount++;
+             }
+         }
+         System.out.println(queensCount);
+         return queensCount;
      }
 }
